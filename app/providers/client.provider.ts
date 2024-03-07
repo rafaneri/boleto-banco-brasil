@@ -7,7 +7,7 @@ export type ICreateBBPurchaseProps = {
   customerCity: string;
   customerStateCode: string;
   purchaseValue: number;
-}
+};
 
 export type IBBRecipientProps = {
   angency: number;
@@ -20,7 +20,7 @@ export type IBBRecipientProps = {
   stateCode: string;
   zipcode: number;
   paymentVoucher: string;
-}
+};
 
 export type IResponseBBPurchaseProps = {
   purschaseId: string;
@@ -37,7 +37,7 @@ export type IResponseBBPurchaseProps = {
     txId: string;
     emv: string;
   };
-}
+};
 
 export type IPurchase = {
   numeroBoletoBB: string;
@@ -53,7 +53,7 @@ export type IPurchase = {
   dataCredito: string;
   valorAtual: string;
   valorPago: string;
-}
+};
 
 export type IResponseSearchBBPurchase = {
   indicadorContinuidade: string;
@@ -61,7 +61,6 @@ export type IResponseSearchBBPurchase = {
   proximoIndice: string;
   boletos: IPurchase[];
 };
-
 
 export type ICreateBBPurchaseTicketProps = {
   numericBarcode: string;
@@ -73,10 +72,17 @@ export type ICreateBBPurchaseTicketProps = {
   customerAddress: string;
   customerCity: string;
   customerStateCode: string;
-}
+  contrato: string;
+  cpfCnpj: string;
+  endereco: string;
+  cidadeUf: string;
+  cedente: string;
+};
 
 export interface IClientProvider {
-  CreatePurchase(data: ICreateBBPurchaseProps): Promise<IResponseBBPurchaseProps>;
+  CreatePurchase(
+    data: ICreateBBPurchaseProps,
+  ): Promise<IResponseBBPurchaseProps>;
   CreatePurchaseTicket(data: ICreateBBPurchaseTicketProps): Promise<string>;
   SearchLastPurchase(): Promise<IPurchase>;
   // implementar busca de bolelos por intervalo de datas;

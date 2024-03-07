@@ -325,7 +325,7 @@
       <div class="corte">
         <p class="left">Corte na linha pontilhada</p>
         <hr class="linha-pontilhada">
-        <p class="right"><b>Recibo do Sacado</b></p>
+        <p class="right"><b>Recibo do Pagador</b></p>
       </div>
 
       <!-- cabeçalho -->
@@ -414,8 +414,14 @@
 
         <div class="linha">
           <div class="campo sacado">
-            <h4>Sacado</h4>
+            <h4>Pagador</h4>
             <p>{{dataBoleto.sacado}}</p>
+            <p>
+              {{dataBoleto.endereco1}}
+            </p>
+            <p>
+              {{dataBoleto.endereco2}}
+            </p>
           </div>
         </div>
       </div>
@@ -449,7 +455,7 @@
         <div class="linha">
           <div class="campo local-pagamento">
             <h4>Local de pagamento</h4>
-            <p>QUALQUER BANCO ATÉ O VENCIMENTO</p>
+            <p>PAGÁVEL EM QUALQUER BANCO</p>
           </div>
           <div class="campo vencimento-inferior">
             <h4>Vencimento</h4>
@@ -458,11 +464,11 @@
         </div>
         <div class="linha">
           <div class="campo cedente-inferior">
-            <h4>Cedente</h4>
+            <h4>Beneficiário</h4>
             <p>{{dataBoleto.cedente}}</p>
           </div>
           <div class="campo agencia-codigo-cedente-inferior">
-            <h4>Agência/Código cedente</h4>
+            <h4>Agência/Código beneficiário</h4>
             <p>{{dataBoleto.agencia_codigo}}</p>
           </div>
         </div>
@@ -576,7 +582,7 @@
         </div>
         <div class="linha-3">
           <div class="campo sacado-inferior">
-            <h4>Sacado</h4>
+            <h4>Pagador</h4>
             <p>
               {{dataBoleto.sacado}}
             </p>

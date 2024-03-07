@@ -305,7 +305,7 @@ class BBClient {
       // DADOS PERSONALIZADOS - BANCO DO BRASIL
       convenio: this.BB_CONVENIO,
       // Num do convênio - REGRA: 6 ou 7 ou 8 dígitos
-      contrato: '999999',
+      contrato: data.contrato,
       // Num do seu contrato
       carteira: this.BB_WALLET,
       variacao_carteira: '',
@@ -319,10 +319,10 @@ class BBClient {
 
       // SEUS DADOS
       identificacao: '',
-      cpf_cnpj: '32.063.701/0001-66',
-      endereco: '',
-      cidade_uf: 'Teresina / PI',
-      cedente: 'M & F COMERCIO DE LIVROS E ALIMENTOS LTDA',
+      cpf_cnpj: data.cpfCnpj,
+      endereco: data.endereco,
+      cidade_uf: data.cidadeUf,
+      cedente: data.cedente,
       linha_digitavel: (0, _generateBoleto.montaLinhaDigitavel)(data.numericBarcode),
       agencia_codigo: `${this.BB_AGENCIA}-${(0, _generateBoleto.modulo11)(this.BB_AGENCIA)} / ${this.BB_CONTA}-${(0, _generateBoleto.modulo11)(this.BB_CONTA)}`,
       nosso_numero: (0, _generateBoleto.formatacaoConvenio7)(codigoBanco, numMoeda, String((0, _generateBoleto.fatorVencimento)(data.dueDate)), (0, _generateBoleto.formataNumero)(String(valor), 10, 0, 'valor'), '000000', this.BB_CONVENIO, data.purchaseId, this.BB_WALLET),
@@ -344,7 +344,7 @@ class BBClient {
     const b64 = (0, _svg.default)(svgText);
 
     // read logo banco do brasil
-    const logoPath = _path.default.resolve(__dirname, '..', 'public', 'images', 'logobb.jpg');
+    const logoPath = _path.default.resolve(__dirname, '..', 'public', 'images', 'logobb.png');
     const logoBase64 = _fs.default.readFileSync(logoPath, {
       encoding: 'base64'
     });

@@ -285,6 +285,11 @@ type IRequest = {
   cidadeComprador: string;
   // bairroComprador: string;
   estadoComprador: string;
+  contrato: string;
+  cpfCnpj: string;
+  endereco: string;
+  cidadeUf: string;
+  cedente: string;
 };
 
 export async function generateBoleto({
@@ -306,6 +311,11 @@ export async function generateBoleto({
   cidadeComprador,
   // bairroComprador,
   estadoComprador,
+  contrato,
+  cpfCnpj,
+  endereco,
+  cidadeUf,
+  cedente,
 }: IRequest): Promise<string> {
   const codigoBanco = '001';
   const numMoeda = '9';
@@ -354,7 +364,7 @@ export async function generateBoleto({
 
     // DADOS PERSONALIZADOS - BANCO DO BRASIL
     convenio: bbConvenio, // Num do convênio - REGRA: 6 ou 7 ou 8 dígitos
-    contrato: '999999', // Num do seu contrato
+    contrato: contrato, // Num do seu contrato
     carteira: bbWallet,
     variacao_carteira: '', // Variação da Carteira, com traço (opcional)
 
@@ -364,10 +374,10 @@ export async function generateBoleto({
 
     // SEUS DADOS
     identificacao: '',
-    cpf_cnpj: '32.063.701/0001-66',
-    endereco: '',
-    cidade_uf: 'Teresina / PI',
-    cedente: 'M & F COMERCIO DE LIVROS E ALIMENTOS LTDA',
+    cpf_cnpj: cpfCnpj,
+    endereco: endereco,
+    cidade_uf: cidadeUf,
+    cedente: cedente,
 
     linha_digitavel: montaLinhaDigitavel(codigoBarraNumerico),
     agencia_codigo: `${agencia}-${modulo11(agencia)} / ${conta}-${modulo11(
@@ -429,12 +439,7 @@ export async function generateBoleto({
   const html = templateHTML({ dataBoleto, barcode: b64, logobb: logoBase64 });
   // const html = templateHTML({ data, images });
 
-  const pdfRootPath = path.resolve(
-    process.cwd(),
-    'tmp',
-    'uploads',
-    'boletos',
-  );
+  const pdfRootPath = path.resolve(process.cwd(), 'tmp', 'uploads', 'boletos');
 
   if (!fs.existsSync(pdfRootPath)) {
     fs.mkdirSync(pdfRootPath, { recursive: true });

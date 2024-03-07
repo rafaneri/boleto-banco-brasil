@@ -317,7 +317,7 @@ export class BBClient implements IClientProvider {
 
       // DADOS PERSONALIZADOS - BANCO DO BRASIL
       convenio: this.BB_CONVENIO, // Num do convênio - REGRA: 6 ou 7 ou 8 dígitos
-      contrato: '999999', // Num do seu contrato
+      contrato: data.contrato, // Num do seu contrato
       carteira: this.BB_WALLET,
       variacao_carteira: '', // Variação da Carteira, com traço (opcional)
 
@@ -327,10 +327,10 @@ export class BBClient implements IClientProvider {
 
       // SEUS DADOS
       identificacao: '',
-      cpf_cnpj: '32.063.701/0001-66',
-      endereco: '',
-      cidade_uf: 'Teresina / PI',
-      cedente: 'M & F COMERCIO DE LIVROS E ALIMENTOS LTDA',
+      cpf_cnpj: data.cpfCnpj,
+      endereco: data.endereco,
+      cidade_uf: data.cidadeUf,
+      cedente: data.cedente,
 
       linha_digitavel: montaLinhaDigitavel(data.numericBarcode),
       agencia_codigo: `${this.BB_AGENCIA}-${modulo11(this.BB_AGENCIA)} / ${this.BB_CONTA}-${modulo11(
@@ -383,7 +383,7 @@ export class BBClient implements IClientProvider {
       '..',
       'public',
       'images',
-      'logobb.jpg',
+      'logobb.png',
     );
     const logoBase64 = fs.readFileSync(logoPath, { encoding: 'base64' });
 

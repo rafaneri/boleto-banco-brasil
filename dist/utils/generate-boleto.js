@@ -258,7 +258,12 @@ async function generateBoleto({
   enderecoComprador,
   cidadeComprador,
   // bairroComprador,
-  estadoComprador
+  estadoComprador,
+  contrato,
+  cpfCnpj,
+  endereco,
+  cidadeUf,
+  cedente
 }) {
   const codigoBanco = '001';
   const numMoeda = '9';
@@ -311,7 +316,7 @@ async function generateBoleto({
     // DADOS PERSONALIZADOS - BANCO DO BRASIL
     convenio: bbConvenio,
     // Num do convênio - REGRA: 6 ou 7 ou 8 dígitos
-    contrato: '999999',
+    contrato: contrato,
     // Num do seu contrato
     carteira: bbWallet,
     variacao_carteira: '',
@@ -325,10 +330,10 @@ async function generateBoleto({
 
     // SEUS DADOS
     identificacao: '',
-    cpf_cnpj: '32.063.701/0001-66',
-    endereco: '',
-    cidade_uf: 'Teresina / PI',
-    cedente: 'M & F COMERCIO DE LIVROS E ALIMENTOS LTDA',
+    cpf_cnpj: cpfCnpj,
+    endereco: endereco,
+    cidade_uf: cidadeUf,
+    cedente: cedente,
     linha_digitavel: montaLinhaDigitavel(codigoBarraNumerico),
     agencia_codigo: `${agencia}-${modulo11(agencia)} / ${conta}-${modulo11(conta)}`,
     nosso_numero: formatacaoConvenio7(codigoBanco, numMoeda, String(fatorVencimento(dataVencimento)), formataNumero(String(valor), 10, 0, 'valor'), '000000', bbConvenio, numeroBoleto, bbWallet),
